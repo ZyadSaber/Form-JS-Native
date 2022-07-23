@@ -108,7 +108,7 @@ tr:nth-child(even):hover td {
 }
 .d_e {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .d_e button {
   width: 30px;
