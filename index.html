@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./main.css" />
+    <title>Form</title>
+  </head>
+  <body>
+    <div class="container" id="container">
+      <div class="buttons">
+        <button id="add_data" onclick="add_data_fun(my_data)">
+          add New Record
+        </button>
+        <button
+          id="save_data"
+          onclick="save_edited_data(), save_data_fun()"
+          disabled
+        >
+          Save Data
+        </button>
+      </div>
+      <table>
+        <thead>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Email</th>
+          <th>Address</th>
+          <th>Date of birth</th>
+          <th>flag</th>
+          <th>Action</th>
+        </thead>
+        <tbody id="table_body"></tbody>
+      </table>
+      <h1 id="err_msg" hidden>Please Make sure all the data is correct</h1>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>

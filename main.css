@@ -1,0 +1,120 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  background-color: #032e49;
+  font-size: 16px;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+}
+h1 {
+  color: white;
+  text-align: center;
+  background-color: red;
+  border: 40px solid red;
+}
+.container {
+  display: block;
+  margin: auto;
+  padding: 5px 50px;
+}
+.container .buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  margin-top: 50px;
+}
+.container .buttons button {
+  width: 330px;
+  height: 70px;
+  font-size: 30px;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+  background-color: #47b5ff;
+}
+table {
+  text-align: left;
+  overflow: auto;
+  width: 80%;
+  margin: 0 auto;
+  display: table;
+  padding: 0 0 8em 0;
+  width: 100%;
+}
+.name {
+  min-width: 220px;
+}
+.age {
+  min-width: 70px;
+}
+.email {
+  min-width: 100px;
+}
+.address {
+  max-width: 250px;
+}
+.date {
+  font-size: 0px;
+  min-width: 174px;
+  padding: 1px;
+}
+.date input {
+  width: 170px;
+  height: 30px;
+  text-align: center;
+  font-size: 20px;
+}
+table th {
+  background-color: white;
+  font-weight: bold;
+  font-size: 22px;
+  text-align: left;
+  color: #185875;
+  padding: 8px;
+}
+table td {
+  text-align: center;
+  font-weight: normal;
+  font-size: 25px;
+  padding: 10px;
+  box-shadow: 0 2px 2px -2px #0e1119;
+}
+table tbody tr {
+  height: 70px;
+}
+table tr:nth-child(odd) {
+  background-color: #323c50;
+}
+table tr:nth-child(even) {
+  background-color: #2c3446;
+}
+td {
+  color: white;
+}
+tr:nth-child(odd):hover td {
+  background: #6b73cc;
+}
+tr:nth-child(even):hover td {
+  background: #6b73cc;
+}
+.d_e {
+  display: flex;
+  justify-content: space-between;
+}
+.d_e button {
+  width: 30px;
+  height: 30px;
+}
+input[type="checkbox"] {
+  width: 30px;
+  height: 30px;
+}
