@@ -1,9 +1,9 @@
 let my_data = [{
-    "name": "Zyad Ahmed",
+    "name": "Zyad",
     "age": "20",
     "email": "zyad@gmail.com",
     "address": "Cairo",
-    "date_of_birth": "2002-09-09",
+    "date_of_birth": "2022-06-09",
     "state": "checked"
 }, {
     "name": "Mohamed",
@@ -13,19 +13,19 @@ let my_data = [{
     "date_of_birth": "2022-01-22",
     "state": ""
 },{
-    "name": "Zyad Ahmed",
-    "age": "20",
-    "email": "zyad@gmail.com",
-    "address": "Cairo",
-    "date_of_birth": "2002-09-09",
-    "state": "checked"
-}, {
-    "name": "Mohamed",
-    "age": "22",
-    "email": "Mohamed@gmail.com",
-    "address": "NY",
-    "date_of_birth": "2022-01-22",
+    "name": "Ahmed",
+    "age": "30",
+    "email": "Ahmed@gmail.com",
+    "address": "Alex",
+    "date_of_birth": "2021-05-13",
     "state": ""
+}, {
+    "name": "Mostafa",
+    "age": "22",
+    "email": "Mostafa@gmail.com",
+    "address": "DC",
+    "date_of_birth": "2006-11-22",
+    "state": "checked"
 }]
 
 // Global Variables
