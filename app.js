@@ -210,10 +210,11 @@ function save_edited_data() {
                 new_array[index_to_edit].state = "";
             };
         clr()
-        }
-    }
         save(end_obj);
         generate();
+        }
+    }
+        
 };
 
 
