@@ -49,11 +49,32 @@ function save (ex) {
     }
         )
     
+};
+
+function send_date (date) {
+    // let b = new_array[date].date_of_birth
+    let y = date.slice(0,4)
+    let m =date.slice(5,7)
+    let d = date.slice(8,10)
+    return `${d}-${m}-${y}`
+};
+function show_date (date) {
+    let b = new_array[date].date_of_birth
+    if (b !== undefined) {
+        let y = b.slice(6,10)
+        let m =b.slice(3,5)
+        let d = b.slice(0,2)
+        return `${y}-${m}-${d}` 
     }
+}
+
 
 
 
 // Load all the available data when the page is loaded
+
+
+
 
 function generate () {
     fetch(exsys_get_api)
@@ -67,7 +88,7 @@ function generate () {
             <td class="age">${new_array[i].age}</td>
             <td class="email">${new_array[i].email}</td>
             <td class="address">${new_array[i].address}</td>
-            <td class="date"><input type="date" disabled  "/></td>
+            <td class="date"><input type="date" disabled value="${show_date(i)}"/></td>
              <td class="checkbox"><input type="checkbox" ${state(i)} disabled/></td>
              <td> <div class="d_e"><button id="delete" onclick="delete_this_data(${[i]})">❌</button><button class="edit" onclick="edit_this_data(${[i]}, new_array)">🖋</button></div></td>
             </tr>`;
@@ -84,7 +105,11 @@ generate()
 function add_data_fun (data) {
             clr()
             for (let i = 0; i < data.length; i++){
-            row = `<tr> 
+
+                 if (data[i].record_status === "D") {
+                    continue
+                } else {
+                    row = `<tr> 
             <td class="name">${data[i].staff_name}</td>
             <td class="age">${data[i].age}</td>
             <td class="email">${data[i].email}</td>
@@ -94,6 +119,7 @@ function add_data_fun (data) {
             <td> <div class="d_e"><button id="delete" disabled onclick="delete_this_data(${[i]})">❌</button><button class="edit" disabled onclick="edit_this_data(${[i]}, my_data)">🖋</button></div></td>
             </tr>`;
             rows();
+            }
             }
             row = `<tr> 
             <td><input type="text" required id="name"></td>
@@ -120,8 +146,10 @@ function edit_this_data (i, data) {
     document.getElementById("add_data").setAttributeNode(document.createAttribute("disabled"))
     document.getElementById("save_data").disabled="";
      for (let e = 0; e < data.length; e++){
-        if (e != i) {
-             row = `<tr> 
+        if (data[i].record_status === "D"){
+            continue
+        }else if (e != i){
+            row = `<tr> 
             <td>${data[e].staff_name}</td>
             <td>${data[e].age}</td>
             <td>${data[e].email}</td>
@@ -131,7 +159,7 @@ function edit_this_data (i, data) {
             <td><div class="d_e"><button id="delete" disabled>❌</button><button class="edit" disabled>🖋</button></dev></td>
             </tr>`;
         } else {
-             row = `<tr> 
+            row = `<tr> 
             <td><input type="text" required id="name" value="${data[e].staff_name}"></td>
             <td><input type="text" id="age" value="${data[e].age}"></td>
             <td><input type="email" id="email" value="${data[e].email}"></td>
@@ -143,6 +171,8 @@ function edit_this_data (i, data) {
             index_to_edit = e
             log(index_to_edit)
         }
+
+
             rows()
             }
             
@@ -168,7 +198,7 @@ function save_data_fun () {
             let new_array_data = {
                 "total": 5,
                 "age": age,
-                "date_start_service": date_of_birth,
+                "date_start_service": send_date(date_of_birth),
                 "email": email,
                 "genger": "M",
                 "staff_id": 1,
@@ -176,7 +206,8 @@ function save_data_fun () {
                 "address": address,
                 "staff_short_code": "AZ",
                 "record_status": "q",
-                "status" : ch_state()
+                "status" : ch_state(),
+                "record_status" :"N"
             };
             new_array.push(new_array_data);
             clr()
@@ -192,7 +223,7 @@ function save_edited_data() {
         let email = document.getElementById("email").value;
         let address = document.getElementById("address").value;
         let date_of_birth  = document.getElementById("date_of_birth").value;    
-        if (name === "" || age === "" || email  === "" || address  === "" || date_of_birth === "") {
+        if (name === "" || age === "" || email  === "" || address  === "" ) {
             document.getElementById("err_msg").hidden="";
         } else {
         document.getElementById("err_msg").setAttributeNode(document.createAttribute("hidden"));
@@ -203,7 +234,8 @@ function save_edited_data() {
         new_array[index_to_edit].age = age;
         new_array[index_to_edit].email = email;
         new_array[index_to_edit].address = address;
-        new_array[index_to_edit].date_of_birth = date_of_birth;
+        new_array[index_to_edit].date_of_birth = send_date(date_of_birth);
+        new_array[index_to_edit].record_status = "U"
         if (document.getElementById("checkbox").checked) {
                 new_array[index_to_edit].state = "checked";
             }else {
@@ -222,8 +254,25 @@ function save_edited_data() {
 // delete specific data
 
 function delete_this_data (i) {
-    new_array.splice(i, 1);
-    table.innerHTML = ""
+    new_array[i].staff_name = ""
+    new_array[i].age = ""
+    new_array[i].email = ""
+    new_array[i].address = ""
+    new_array[i].date_of_birth = ""
+    new_array[i].record_status = "D"
+     clr();
     save(end_obj);
     generate();
 };
+
+function generate1(data) {
+    table.innerHTML = "";
+            for (let i = 0; i < data.length; i++){
+
+                if (data[i].record_status === "D") {
+                    continue
+                } else {
+
+            }
+                }
+}
