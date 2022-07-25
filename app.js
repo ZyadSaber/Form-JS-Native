@@ -4,7 +4,7 @@ let row;
 let index_to_edit
 let save_edit = false
 const exsys_get_api = "http://207.180.237.36:9090/ords/exsys_api/ex_react_test_emp/exsys_react_test_emp_data?authorization=3995005&staff_id=&poffset=0&staff_short_code&staff_name="
-const exsys_post_api = "http://207.180.237.36:9090/ords/exsys_api/ex_react_test_emp/exsys_react_test_emp_dml	"
+const exsys_post_api = "http://207.180.237.36:9090/ords/exsys_api/ex_react_test_emp/exsys_react_test_emp_dml"
 let new_object = {
     "total": 5,
     "age": 25,
@@ -22,7 +22,7 @@ let end_obj
 // Global Functions
 function log (message) {console.log(message)};
 function state (i) {
-    if (new_array[i].status === "A") {
+    if (new_array[i].status === "O") {
         return "checked"
 }else{
     return ""
@@ -30,8 +30,9 @@ function state (i) {
 };
 function ch_state () {
     if (document.getElementById("checkbox").checked) {
-        return "A"
-}};
+        return "O"
+}
+};
 function clr () {
     table.innerHTML = "";
 }
@@ -52,7 +53,6 @@ function save (ex) {
 };
 
 function send_date (date) {
-    // let b = new_array[date].date_of_birth
     let y = date.slice(0,4)
     let m =date.slice(5,7)
     let d = date.slice(8,10)
@@ -82,6 +82,7 @@ function generate () {
 .then((arr) => {
     new_array = arr.data
     end_obj = {"data":new_array}
+    log(new_array)
     for (let i = 0; i < new_array.length; i++){
             row = `<tr> 
             <td class="name">${new_array[i].staff_name}</td>
@@ -195,19 +196,17 @@ function save_data_fun () {
             document.getElementById("err_msg").setAttributeNode(document.createAttribute("hidden"));
             document.getElementById("save_data").setAttributeNode(document.createAttribute("disabled"));
             document.getElementById("add_data").disabled="";
-            let new_array_data = {
-                "total": 5,
+            let new_array_data ={
+                "address": address,
                 "age": age,
                 "date_start_service": send_date(date_of_birth),
                 "email": email,
                 "genger": "M",
+                "record_status" :"n",
                 "staff_id": 1,
                 "staff_name": staff_name,
-                "address": address,
-                "staff_short_code": "AZ",
-                "record_status": "q",
+                "staff_name": staff_name,
                 "status" : ch_state(),
-                "record_status" :"N"
             };
             new_array.push(new_array_data);
             clr()
@@ -230,12 +229,14 @@ function save_edited_data() {
         document.getElementById("save_data").setAttributeNode(document.createAttribute("disabled"))
         document.getElementById("add_data").disabled="";
         console.log("edit")
-        new_array[index_to_edit].staff_name = name;
-        new_array[index_to_edit].age = age;
-        new_array[index_to_edit].email = email;
         new_array[index_to_edit].address = address;
+        new_array[index_to_edit].age = age;
         new_array[index_to_edit].date_of_birth = send_date(date_of_birth);
-        new_array[index_to_edit].record_status = "U"
+        new_array[index_to_edit].email = email;
+        new_array[index_to_edit].genger= "M",
+        new_array[index_to_edit].record_status = "u"
+        new_array[index_to_edit].staff_id = new_array[index_to_edit].staff_id
+        new_array[index_to_edit].staff_name = name;
         if (document.getElementById("checkbox").checked) {
                 new_array[index_to_edit].state = "checked";
             }else {
@@ -259,20 +260,8 @@ function delete_this_data (i) {
     new_array[i].email = ""
     new_array[i].address = ""
     new_array[i].date_of_birth = ""
-    new_array[i].record_status = "D"
+    new_array[i].record_status = "d"
      clr();
     save(end_obj);
     generate();
 };
-
-function generate1(data) {
-    table.innerHTML = "";
-            for (let i = 0; i < data.length; i++){
-
-                if (data[i].record_status === "D") {
-                    continue
-                } else {
-
-            }
-                }
-}
