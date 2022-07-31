@@ -54,8 +54,9 @@ function save (staff_name, age, date_start_service, email,  address, state, reco
         )
     }
         )
-        .then(res => res.json())
-        .then(generate())
+        .then(res => {if (res.status == 200) {
+            generate()
+        }})
     
 };
 
